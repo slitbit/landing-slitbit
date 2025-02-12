@@ -1,0 +1,154 @@
+---
+import ArrowIcon from "./utils/ArrowIcon.component.astro";
+import Light from "./utils/Light.astro";
+
+interface TeamProps {
+    name: string;
+    role: string;
+    image: string;
+    description: string;
+    linkedin: string;
+    github: string;
+    portfolio: string;
+    proyectsNumber: number;
+    
+}
+
+
+
+const team : TeamProps[] = [
+    { 
+      name: "Leonardo Daniel Rebollo Caleo",
+      role: "CEO",
+      image: "/images/team-images/leonardopic.jpg",
+      description: "Soy un aspirante a desarrollador de software profesional con experiencia en web, móvil y un poco de fullstack. He colaborado con diversas empresas, aportando ideas innovadoras para alcanzar sus objetivos junto a mis compañeros. Siempre me consideran una persona responsable que busca soluciones efectivas para resolver problemas en el menor tiempo posible.",
+      linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
+      github: "https://github.com/LeonardoRebolloCaleo",
+      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
+      proyectsNumber: 3
+    },
+    { 
+      name: "Martin Martinez Arias", 
+      role: "CEO",
+      image: "/images/team-images/martinpic.png",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae",
+      linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
+      github: "https://github.com/LeonardoRebolloCaleo",
+      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
+      proyectsNumber: 3
+    },
+    { 
+      name: "Crystian Adamir Carrera Rivas", 
+      role: "Human Resource",
+      image: "/images/team-images/crystianpic.jpg",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. ",
+      linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
+      github: "https://github.com/LeonardoRebolloCaleo",
+      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
+      proyectsNumber: 3
+     },
+]
+
+
+
+---
+<section class="team-section" id="team-section">
+    <h2>Nuestro equipo</h2>
+    <Light color="rgba(19, 58, 255, 0.7)" x={40} y={30} height={70} width={50}/>
+    <Light color="rgba(19, 58, 255, 0.7)"  x={0} y={-10} height={70} width={100}/>
+    
+    <div class="team-container">
+        <div class="team-members">
+            <button id="prev-button" ><ArrowIcon direction="0" color="white" size="1" /></button>
+            {
+                team.map((member, index) => (
+                    <div class={index === 0 ? "team-member active" : "team-member"}>
+                        <img src={member.image} alt={member.name} />
+                     
+                        <div class="team-member-info">
+                            <div class="team-member-info-container">
+                                <div class="team-member-info-name-role">
+                                    <h3>{member.name}</h3>
+                                    <p>{member.role}</p>
+                                </div>
+                                <div class="team-member-info-description">
+                                    <p>{member.description}</p>
+                                </div>
+                            </div>
+                           <div class="team-member-info-socials">
+                                <a class="social-buttons" href={member.linkedin} target="_blank">Linkedin <i class="fa-brands fa-linkedin"></i></a>
+                                <a class="social-buttons" href={member.github} target="_blank">Github <i class="fa-brands fa-github"></i></a>
+                                <a class="social-buttons" href={member.portfolio} target="_blank">Portafolio <i class="fa-solid fa-briefcase"></i></a>
+    
+                                <p>Proyectos realizados: {member.proyectsNumber}</p>
+    
+                           </div>
+                        </div>
+                        
+                    </div>
+                ))
+            }
+            <button id="next-button"><ArrowIcon direction="180" color="white" size="1" /></button>
+        </div>
+        <div class="team-members-dots">
+            {
+                team.map((_member, index) =>{
+                    return <div class={index === 0 ? "team-member-dot active" : "team-member-dot"}></div>
+                })
+            }
+
+        </div>
+       
+    
+    </div>
+</section>
+
+<script>
+    let index = 0;
+    const teamMembers = document.querySelectorAll(".team-member");
+    const teamMemberDots = document.querySelectorAll(".team-member-dot");
+    const prevButton = document.getElementById("prev-button");
+    const nextButton = document.getElementById("next-button");
+
+    function changeIndex(indx: number){
+        teamMembers.forEach((element, i) =>{
+           if(indx === i){
+              element.classList.add("active");
+              teamMemberDots[i].classList.add("active");
+           }
+           else{
+              element.classList.remove("active");
+              teamMemberDots[i].classList.remove("active");
+           }
+        })
+    }
+
+    if(prevButton && nextButton){
+        prevButton.addEventListener("click", () => {
+            index = (index - 1 + teamMembers.length) % teamMembers.length;
+            changeIndex(index);
+        })
+
+        nextButton.addEventListener("click", () => {
+            index = (index + 1) % teamMembers.length;
+            changeIndex(index);
+        })
+    }
+
+    if(teamMemberDots){
+        teamMemberDots.forEach((dot, i) => {
+            dot.addEventListener("click", () => {
+                index = i;
+                changeIndex(index);
+            })
+        })
+    }
+
+    setTimeout(() => {
+        index = (index + 1) % teamMembers.length;
+        changeIndex(index);
+    }, 5000);
+
+    
+ 
+</script>

@@ -1,0 +1,61 @@
+<div class="header">
+    <div class="header-logo">
+      <img src="/images/single-logo.png" alt="logo" />
+      <h4>SLITBIT</h4>
+    </div>
+    <div class="header-options">
+      <a href="#home" class="nav-link active">Inicio</a>
+      <a href="#about" class="nav-link">Sobre Nosotros</a>
+      <a href="#services" class="nav-link">Servicios</a>
+      <a href="#team-section" class="nav-link">Equipo</a>
+      <a href="#projects" class="nav-link">Proyectos</a>
+      <a href="#contact" class="nav-link">Contacto</a>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = document.querySelectorAll(".nav-link");
+      const sections = document.querySelectorAll("section");
+  
+      function setActiveNavLink(targetId: string) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${targetId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href")!.substring(1);
+          const targetSection = document.getElementById(targetId);
+  
+          if (targetSection) {
+            window.scrollTo({
+              top: targetSection.offsetTop - 50,
+              behavior: "smooth",
+            });
+          }
+  
+          setActiveNavLink(targetId);
+        });
+      });
+  
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveNavLink(entry.target.id);
+            }
+          });
+        },
+        { threshold: 0.5} 
+      ); 
+  
+      sections.forEach((section) => observer.observe(section));
+    });
+  </script>
+  

@@ -1,0 +1,52 @@
+---
+import Button from "./utils/Button.component.astro";
+import Light from "./utils/Light.astro";
+---
+
+<section class="about-us hidden" id="about" >
+  <h2>Acerca de nosotros</h2>
+  <div class="about-us-container">
+    <div class="about-us-section-left">
+      <h4>
+        En SLITBIT, transformamos ideas en soluciones tecnológicas eficientes y
+        accesibles. Nos especializamos en el desarrollo de software de alta
+        calidad, ofreciendo precios competitivos sin comprometer la excelencia
+      </h4>
+      <Button text="Explorar servicios" onClick={() => {}} disabled={false} />
+      </div>
+    <div class="about-us-section-right">
+      <div class="about-us-right-container">
+        <div class="diagonal-shape">
+            <p>Transformamos ideas en software, y software en éxito.</p>
+          </div>
+          <img src="/images/code-img.jpg" alt="logo" />
+          <Light color="rgba(0, 50, 81, 0.4)" x={-45} y={50}/>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const aboutSection = document.getElementById("about");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
+  
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+  });
+  </script>
+  
+

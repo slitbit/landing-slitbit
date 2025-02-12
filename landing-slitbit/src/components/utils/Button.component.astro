@@ -1,0 +1,22 @@
+---
+const { text, disabled, type,id } = Astro.props;
+
+const style = {
+  
+    background: 'linear-gradient(90deg, #FF0004 40%, #FF008C 70%)',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent',
+    color: 'transparent', 
+    
+};
+---
+<div style="background-color: white; border-radius: 10px">
+
+<button 
+  class="button" 
+  id={id}
+  disabled={disabled} 
+  style={type ? style : undefined}>
+  {text}
+</button>
+</div>  
