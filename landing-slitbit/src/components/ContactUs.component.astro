@@ -1,0 +1,31 @@
+---
+import { ContactForm } from "./utils/contact-form.component";
+
+
+---
+
+<section class="contact-us-container hidden" id="contact">
+  <ContactForm client:visible/>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactSection = document.getElementById("contact");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
+  
+    if (contactSection) {
+      observer.observe(contactSection);
+    }
+  });
+  </script>

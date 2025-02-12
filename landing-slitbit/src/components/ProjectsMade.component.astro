@@ -1,0 +1,14 @@
+---
+import Light from "./utils/Light.astro";
+import { ProjectDisplay, ProjectsData } from "./utils/ProjectDisplay.component";
+---
+
+<section class="projects-made" id="projects">
+  <Light color="rgba(255, 98, 0, 0.3)" x={0} y={50} width={130} height={50} />
+  <h2>Proyectos realizados</h2>
+  <div class="projects-made-container">
+    <div class="projects-made-container-item">
+      {ProjectsData.map((project) => <ProjectDisplay data={project} />)}
+    </div>
+  </div>
+</section>
