@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 
 export const ProjectsData = [
   {
@@ -20,7 +21,9 @@ interface ProjectDisplayProps {
   data: ProjectData;
 }
 
+
 export const ProjectDisplay: React.FC<ProjectDisplayProps> = ({ data }) => {
+
   const getImagesFromPath = (path: string) => {
     const images = [];
     for (let i = 1; i <= 3; i++) {
@@ -31,7 +34,8 @@ export const ProjectDisplay: React.FC<ProjectDisplayProps> = ({ data }) => {
 
   if (data) {
     return (
-      <div className="project-display-container">
+  
+         <div className="project-display-container">
         <div className="project-display-images">
           {getImagesFromPath(data.images).map((image, index) => (
             <img
@@ -47,6 +51,9 @@ export const ProjectDisplay: React.FC<ProjectDisplayProps> = ({ data }) => {
           <p>{data.description}</p>
         </div>
       </div>
+     
+     
+   
     );
   } else {
     return <h4>No hay proyectos</h4>;
