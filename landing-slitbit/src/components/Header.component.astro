@@ -1,5 +1,7 @@
-<div class="header">
+<div class="header" id="header-ref">
     <div class="header-logo">
+      <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
       <img src="/images/single-logo.png" alt="logo" />
       <h4>SLITBIT</h4>
     </div>
@@ -11,12 +13,30 @@
       <a href="#projects" class="nav-link">Proyectos</a>
       <a href="#contact" class="nav-link">Contacto</a>
     </div>
+
+
+
   </div>
   
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const navLinks = document.querySelectorAll(".nav-link");
       const sections = document.querySelectorAll("section");
+
+      const menuDropdown = document.getElementById("menu-icon");
+      const menuClose = document.getElementById("close-icon");
+      const headerOptions = document.querySelector(".header-options") as HTMLElement;
+
+      // Funcion para detectar cuando se hizo click fuera del header-ref
+      document.addEventListener("click", (event) => {
+        const header = document.getElementById("header-ref");
+        if (!header?.contains(event.target as Node) && menuDropdown && menuClose && headerOptions) {
+          headerOptions.style.transform = "translateY(-300%)";
+        headerOptions?.classList.remove("show-menu");
+        menuDropdown.style.display = "block";
+        menuClose.style.display = "none";
+        }
+      })
   
       function setActiveNavLink(targetId: string) {
         navLinks.forEach((link) => {
@@ -56,6 +76,29 @@
       ); 
   
       sections.forEach((section) => observer.observe(section));
+
+
+
+      if(menuDropdown && menuClose && headerOptions){
+        menuDropdown?.addEventListener("click", () => {
+          headerOptions.style.transform = "translateY(0)";
+        headerOptions?.classList.add("show-menu");
+        menuDropdown.style.display = "none";
+        menuClose.style.display = "block";
+       
+
+      });
+      menuClose?.addEventListener("click", () => {
+        headerOptions.style.transform = "translateY(-300%)";
+        headerOptions?.classList.remove("show-menu");
+        menuDropdown.style.display = "block";
+        menuClose.style.display = "none";
+      
+      });
+      }
+
+     
+      
     });
   </script>
   

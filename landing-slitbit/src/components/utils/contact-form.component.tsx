@@ -98,13 +98,34 @@ export const ContactForm = () => {
 
   const validatePhone = (phoneNumber : string ) => {
     const numericPhone = phoneNumber.replace(/\D/g, ""); 
-    if (numericPhone && !isNaN(Number(numericPhone)) && numericPhone.length <= 10) {
+    if (numericPhone && !isNaN(Number(numericPhone))) {
+      if(numericPhone.length > 10) return;
       setPhone(numericPhone);
     } else {
       setPhone("");
     }
      
   };
+
+  const inputValidation = (input: string, type: string) => {
+    if(type === "email" || type === "name"){
+      if(input.length > 45) return;
+      switch (type) {
+        case "email":
+          setEmail(input);
+          break;
+        case "name":
+          setName(input);
+      }
+    }
+    if(type === "message"){
+      if(input.length > 275) return;
+      setMessage(input);
+    }
+    
+  };
+
+  
 
   return (
     <div className="contact-us">
@@ -121,16 +142,16 @@ export const ContactForm = () => {
               <input
                 type="text"
                 value={Email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => inputValidation(e.target.value, "email")}
               />
             </div>
             {errors.email && <p className="error-label">{errors.email}</p>}
-            <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between", width:"80%"}}>
+            <div className="contact-us-data-container">
               <div style={{margin:0, padding: 0 }}>
               <p>Nombres</p>
-              <input onChange={(e) => setName(e.target.value)} value={Name}
+              <input onChange={(e) => inputValidation(e.target.value, "name")} value={Name}
                type="text"
-                 className={errors.name ? "contact-us-input error" : "contact-us-input"} style={{width:"100%"}}/>
+                 className={errors.name ? "contact-us-input error" : "contact-us-input"} style={{width:"95%"}}/>
                   {errors.name && <p className="error-label">{errors.name}</p>}
               </div>
               <div style={{margin:0, padding: 0 }}>
@@ -155,7 +176,7 @@ export const ContactForm = () => {
               rows={4}
               value={Message}
               className={errors.message ? "contact-us-input error" : "contact-us-input"}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => inputValidation(e.target.value, "message")}
             ></textarea>
             {errors.message && <p className="error-label">{errors.message}</p>}
             <div className="contact-us-form-button">

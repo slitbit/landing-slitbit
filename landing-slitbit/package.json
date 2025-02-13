@@ -22,7 +22,8 @@
     "framer-motion": "^12.4.1",
     "lucide": "^0.475.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-google-recaptcha": "^3.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.8"
