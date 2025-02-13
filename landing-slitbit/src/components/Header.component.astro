@@ -27,16 +27,19 @@
       const menuClose = document.getElementById("close-icon");
       const headerOptions = document.querySelector(".header-options") as HTMLElement;
 
-      // Funcion para detectar cuando se hizo click fuera del header-ref
-      document.addEventListener("click", (event) => {
+  
+        document.addEventListener("click", (event) => {
+          if(window.innerWidth < 720){
         const header = document.getElementById("header-ref");
         if (!header?.contains(event.target as Node) && menuDropdown && menuClose && headerOptions) {
           headerOptions.style.transform = "translateY(-300%)";
         headerOptions?.classList.remove("show-menu");
         menuDropdown.style.display = "block";
         menuClose.style.display = "none";
-        }
+        }}
       })
+      
+   
   
       function setActiveNavLink(targetId: string) {
         navLinks.forEach((link) => {
