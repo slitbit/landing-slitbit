@@ -3,14 +3,13 @@
 import Button from './utils/Button.component.astro';
 import Light from './utils/Light.astro';
 
-
 ---
 
 <section class="welcome-container" id="home">
 	<div class="welcome-title-section">
 		<h1  class="parallax-text">Soluciones tecnológicas de alta
 			calidad a bajo costo.</h1>
-			<Light color="rgba(183, 0, 255, 0.8)" />
+			<Light color="rgba(183, 0, 255, 0.8)" x={170} y={-10} id="light-1"/>
 		</div>
 	<div class="welcome-subtitle-section">
 		<Light color="rgba(19, 58, 255, 0.8)" x={-60} y={20}/>
@@ -39,7 +38,7 @@ import Light from './utils/Light.astro';
 		let scrollPosition = window.scrollY;
 		if (text) {
 
-		  text.style.transform= `translateY(-${scrollPosition * 0.5}px)`;
+		  text.style.transform= `translateY(-${scrollPosition * 0.7}px)`;
 		  text.style.opacity = `${1 - scrollPosition / 800}`;
 		}
 	  });
@@ -66,6 +65,7 @@ import Light from './utils/Light.astro';
 		  smoothScrollTo(contactSection);
 		});
 	  }
+
 	});
   </script>
   

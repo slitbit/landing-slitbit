@@ -16,3 +16,25 @@ import { ProjectDisplay, ProjectsData } from "./utils/ProjectDisplay.component";
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const projectsSection = document.getElementById("projects");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
+  
+    if (projectsSection) {
+      observer.observe(projectsSection);
+    }
+  });
+</script>

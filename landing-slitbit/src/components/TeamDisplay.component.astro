@@ -149,6 +149,25 @@ const team : TeamProps[] = [
         changeIndex(index);
     }, 5000);
 
+
+
+    const teamSection = document.getElementById("team-section");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } 
+    );
+  
+    if (teamSection) {
+      observer.observe(teamSection);
+    }
     
  
 </script>
