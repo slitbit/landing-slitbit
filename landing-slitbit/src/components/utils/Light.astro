@@ -1,0 +1,15 @@
+---
+const { color, x, y, height, width } = Astro.props;
+
+
+const style = {
+    background: `radial-gradient(circle, ${color} 0%, rgba(233, 36, 200, 0) 80%)`,
+    transform: "translate(" + x + "%, " + y + "%)",
+    height: height + "%",
+    width: width + "%",
+  };
+---
+
+
+
+<div class='background-light' style={style}></div>

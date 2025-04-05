@@ -1,0 +1,123 @@
+---
+import ArrowIcon from "./utils/ArrowIcon.component.astro";
+import Light from "./utils/Light.astro";
+---
+
+<section class="services" id="services">
+  <div class="custom-shape-divider-bottom-1738829805">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"
+      ></path>
+    </svg>
+  </div>
+
+  <div class="services-container">
+    <div class="services-title">
+      <Light color="rgba(255, 19, 205, 0.9)" x={0} y={-30} />
+      <h2>Servicios</h2>
+    </div>
+
+    <div class="services-section">
+      <button id="prev-button-services"
+        ><ArrowIcon direction="0" color="white" size="1" /></button
+      >
+      <div class="services-card" id="card-0">
+        <h3>Desarrollo web y mobile</h3>
+        <div class="services-card-description">
+          <p>
+            Tenemos amplia experiencia en el diseño y desarrollo web, plasmamos
+            tus ideas y les damos forma
+          </p>
+          <img src="/images/coding-man.jpg" />
+        </div>
+      </div>
+      <div class="services-card" id="card-1">
+        <h3>Desarrollo de software</h3>
+        <div class="services-card-description">
+          <p>Desarrollamos todo tipo de aplicaciones para windows</p>
+          <img src="/images/reunion.jpg" />
+        </div>
+      </div>
+      <div class="services-card" id="card-2">
+        <h3>Bases de datos y APIs</h3>
+        <div class="services-card-description">
+          <p>Tenemos experiencia en el desarrollo de bases de datos y APIs</p>
+          <img src="/images/databases.jpg" />
+        </div>
+      
+      </div>
+      <button id="next-button-services"
+      ><ArrowIcon direction="180" color="white" size="1" /></button
+    >
+    </div>
+  </div>
+
+  <div class="custom-shape-divider-top-1738829771">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+<script>
+  let index = 1;
+  const cards = document.querySelectorAll(".services-card");
+  const prevButton = document.getElementById("prev-button-services");
+  const nextButton = document.getElementById("next-button-services");
+  const windowWidth = window.innerWidth;
+
+  if (windowWidth < 600) {
+    cards.forEach((card, idx) => {
+      if (idx === 1) {
+        card.classList.add("active");
+      }
+    });
+  }
+
+  function changeIndex(newIndex: number) {
+    index = newIndex;
+    updateActiveCard();
+  }
+
+  function updateActiveCard() {
+    cards.forEach((card, idx) => {
+      if (idx === index) {
+        card.classList.add("active");
+      } else {
+        card.classList.remove("active");
+      }
+    });
+  }
+
+  setInterval(() => {
+    index = (index + 1) % cards.length;
+    updateActiveCard();
+  }, 5000);
+
+  cards.forEach((card, idx) => {
+    card.addEventListener("click", () => changeIndex(idx));
+  });
+
+  nextButton?.addEventListener("click", () => {
+    index = (index + 1) % cards.length;
+    updateActiveCard();
+  });
+
+  prevButton?.addEventListener("click", () => {
+    index = (index - 1 + cards.length) % cards.length;
+    updateActiveCard();
+  });
+
+  updateActiveCard();
+</script>

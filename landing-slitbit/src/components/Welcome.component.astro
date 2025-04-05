@@ -1,0 +1,71 @@
+---
+
+import Button from './utils/Button.component.astro';
+import Light from './utils/Light.astro';
+
+---
+
+<section class="welcome-container" id="home">
+	<div class="welcome-title-section">
+		<h1  class="parallax-text">Soluciones tecnológicas de alta
+			calidad a bajo costo.</h1>
+			<Light color="rgba(183, 0, 255, 0.8)" x={170} y={-10} id="light-1"/>
+		</div>
+	<div class="welcome-subtitle-section">
+		<Light color="rgba(19, 58, 255, 0.8)" x={-60} y={20}/>
+		<h3>Transformamos tu visión  
+			con soluciones innovadoras y accesibles. 
+			Descubre cómo podemos impulsar tu negocio al siguiente 
+			<span >nivel</span>
+		</h3>
+	</div>
+	<div class="welcome-button-section">
+		<Button id="services-button" text="Explorar servicios" disabled={false}/>
+		<Button id="contact-button" text="Contacto" type={true} disabled={false}/>	
+		</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	  const contactSection = document.getElementById("contact");
+	  const servicesSection = document.getElementById("services");
+  
+	  const contactButton = document.getElementById("contact-button");
+	  const servicesButton = document.getElementById("services-button");
+
+	  document.addEventListener("scroll", () => {
+		const text = document.getElementById("home") as HTMLElement;
+		let scrollPosition = window.scrollY;
+		if (text) {
+
+		  text.style.transform= `translateY(-${scrollPosition * 0.7}px)`;
+		  text.style.opacity = `${1 - scrollPosition / 800}`;
+		}
+	  });
+
+	  
+
+	  function smoothScrollTo(targetSection : HTMLElement) {
+		if (targetSection) {
+		  window.scrollTo({
+			top: targetSection.offsetTop - 50,
+			behavior: "smooth",
+		  });
+		}
+	  }
+	  if (servicesButton && servicesSection) {
+		servicesButton.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  smoothScrollTo(servicesSection);
+		});
+	  }
+	  if (contactButton && contactSection) {
+		contactButton.addEventListener("click", (e) => {
+		  e.preventDefault();
+		  smoothScrollTo(contactSection);
+		});
+	  }
+
+	});
+  </script>
+  
