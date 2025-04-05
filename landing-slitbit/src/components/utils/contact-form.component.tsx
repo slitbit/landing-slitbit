@@ -19,15 +19,15 @@ export const ContactForm = () => {
 
     emailjs
       .send(
-        import.meta.env.PUBLIC_SERVICE_EMAIL || "",
-        import.meta.env.PUBLIC_TEMPLETE_EMAIL || "",
+        import.meta.env.SERVICE_EMAIL || "",
+        import.meta.env.TEMPLETE_EMAIL || "",
         {
           from_email: Email,
           from_name: Name,
           from_phone: formatPhoneNumber(Phone),
           message: Message,
         },
-        import.meta.env.PUBLIC_KEY_EMAIL || ""  
+        import.meta.env.KEY_EMAIL || ""  
       )
       .then(() => {
         setEmail("");
