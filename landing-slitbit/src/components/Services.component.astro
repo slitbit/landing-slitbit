@@ -33,21 +33,21 @@ import Light from "./utils/Light.astro";
             Tenemos amplia experiencia en el diseño y desarrollo web, plasmamos
             tus ideas y les damos forma
           </p>
-          <img src="/images/coding-man.jpg" />
+          <img src="https://img.freepik.com/foto-gratis/programador-teletrabajo-que-disena-desarrolla-software-utilizando-tableta_482257-98295.jpg?t=st=1743968472~exp=1743972072~hmac=a661a5794bcf0b85a217f95083e148cd76c427ef12d41ea4b4c92ef3e6448fa8&w=740" loading="lazy" />
         </div>
       </div>
       <div class="services-card" id="card-1">
         <h3>Desarrollo de software</h3>
         <div class="services-card-description">
           <p>Desarrollamos todo tipo de aplicaciones para windows</p>
-          <img src="/images/reunion.jpg" />
+          <img src="https://img.freepik.com/foto-gratis/guy-muestra-documento-nina-grupo-jovenes-autonomos-oficina-conversando-trabajando_146671-13569.jpg?t=st=1743968440~exp=1743972040~hmac=311be41cf6817447b899029b1b86dbd83338337929a532222fafb215234e680f&w=996" loading="lazy" />
         </div>
       </div>
       <div class="services-card" id="card-2">
         <h3>Bases de datos y APIs</h3>
         <div class="services-card-description">
           <p>Tenemos experiencia en el desarrollo de bases de datos y APIs</p>
-          <img src="/images/databases.jpg" />
+          <img src="https://img.freepik.com/foto-gratis/fotografia-lateral-editor-codigo-que-utiliza-react-js_181624-61842.jpg?t=st=1743968385~exp=1743971985~hmac=f8d1d1809c90ebab0e2b50bd22067ed3e8f4db9fce965acde62b93e080b3a5c1&w=996" loading="lazy" />
         </div>
       
       </div>
@@ -100,10 +100,39 @@ import Light from "./utils/Light.astro";
     });
   }
 
-  setInterval(() => {
+  const servicesSection = document.getElementById("services");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        startAutoSlide();
+      } else {
+        stopAutoSlide();
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+observer.observe(servicesSection as Element);
+
+let intervalId : number | null = null;
+
+function startAutoSlide() {
+  stopAutoSlide(); // prevent duplicates
+  intervalId = setInterval(() => {
     index = (index + 1) % cards.length;
     updateActiveCard();
   }, 5000);
+}
+
+function stopAutoSlide() {
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+  }
+}
 
   cards.forEach((card, idx) => {
     card.addEventListener("click", () => changeIndex(idx));
