@@ -9,7 +9,7 @@ interface TeamProps {
     description: string;
     linkedin: string;
     github: string;
-    portfolio: string;
+    portfolio?: string;
     proyectsNumber: number;
     
 }
@@ -20,31 +20,29 @@ const team : TeamProps[] = [
     { 
       name: "Leonardo Daniel Rebollo Caleo",
       role: "CEO",
-      image: "/images/team-images/leonardopic.jpg",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQF3EQL9Bs43FQ/profile-displayphoto-shrink_800_800/B56ZRxwc65GoAc-/0/1737075315560?e=1749081600&v=beta&t=ibrNprGNPbv02SS625CxVUumyKec8ix86Z87QwODhLE",
       description: "Soy un aspirante a desarrollador de software profesional con experiencia en web, móvil y un poco de fullstack. He colaborado con diversas empresas, aportando ideas innovadoras para alcanzar sus objetivos junto a mis compañeros. Siempre me consideran una persona responsable que busca soluciones efectivas para resolver problemas en el menor tiempo posible.",
       linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
       github: "https://github.com/LeonardoRebolloCaleo",
-      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
+      portfolio: "https://portafolio-latest.vercel.app",
       proyectsNumber: 3
     },
     { 
       name: "Martin Martinez Arias", 
       role: "CEO",
       image: "/images/team-images/martinpic.png",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae",
+      description: "Desarrollador y tester de software fullstack, con interés en proyectos que generen impacto significativo y dejen una impresión positiva en las personas. Me considero una persona responsable, comprometida con la calidad y en constante búsqueda de mejora continua, tanto a nivel técnico como personal",
       linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
-      github: "https://github.com/LeonardoRebolloCaleo",
-      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
-      proyectsNumber: 3
+      github: "https://github.com/yvngmarti",
+      proyectsNumber: 4
     },
     { 
       name: "Crystian Adamir Carrera Rivas", 
-      role: "Human Resource",
+      role: "ADMINISTRADOR CENTRAL",
       image: "/images/team-images/crystianpic.jpg",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae. ",
-      linkedin: "https://www.linkedin.com/in/leonardo-rebollo-caleo/",
-      github: "https://github.com/LeonardoRebolloCaleo",
-      portfolio: "https://leonardo-rebollo-caleo.vercel.app/",
+      description: "Ingeniero de soporte de servidores en Universidad Politécnica de Quintana Roo.",
+      linkedin: "https://www.linkedin.com/in/crystian-adamir-carrera-rivas-874773313/",
+      github: "https://github.com/CrystianACR",
       proyectsNumber: 3
      },
 ]
@@ -78,7 +76,8 @@ const team : TeamProps[] = [
                            <div class="team-member-info-socials">
                                 <a class="social-buttons" href={member.linkedin} target="_blank">Linkedin <i class="fa-brands fa-linkedin"></i></a>
                                 <a class="social-buttons" href={member.github} target="_blank">Github <i class="fa-brands fa-github"></i></a>
-                                <a class="social-buttons" href={member.portfolio} target="_blank">Portafolio <i class="fa-solid fa-briefcase"></i></a>
+                                {member.portfolio &&  <a class="social-buttons" href={member.portfolio} target="_blank">Portafolio <i class="fa-solid fa-briefcase"></i></a>}
+                               
     
                                 <p>Proyectos realizados: {member.proyectsNumber}</p>
     

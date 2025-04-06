@@ -13,6 +13,27 @@
     color: #fff;
 }
 
+#light-1 {
+    display: none;
+  }
+
+#light-2 {
+    display: none;
+}
+
+.background-light {
+    position:absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 0, 255, 0) 70%);
+    opacity: 0.5;
+    animation: pulse-light 4s infinite ease-in-out;
+    filter: blur(80px);
+    pointer-events: none; 
+    
+  }
+
     h2{
         font-family: "Mulish", serif;
         background: linear-gradient(90deg, #9000FF 0%, #AE00FF 5%, #C43BF1 10%, #FF008C 30%);
@@ -230,6 +251,10 @@ background: linear-gradient(180deg, rgba(255,0,0,0) 0%, rgba(138,10,60,.5) 25%, 
     border: none;
 }
 
+.services{
+    overflow: hidden;
+}
+
 .services-container{
     display: flex;
     flex-direction: column;
@@ -266,6 +291,8 @@ background: linear-gradient(180deg, rgba(255, 0, 102, 0.2) 0%, rgba(255, 69, 69,
     display: none;
 
   }
+
+
 
 .services-card.active{
     display: flex;
@@ -368,6 +395,7 @@ z-index: 4;
 .team-section{
     display: flex;
     opacity: 0;
+    overflow: hidden;
     flex-direction: column;
     align-items: center;
     min-height: 90vh;
@@ -575,6 +603,9 @@ z-index: 4;
 
 /*Technologies Section*/
 
+#technologies{
+    overflow: hidden ;
+}
 
 .tecnologies-container{
     display: flex;
@@ -702,6 +733,8 @@ width: 100%;
     margin: 0;
     padding: 0;
      width:80%;
+     gap: 0px;
+     align-items: normal;
 }
 
 .contact-us-form-container{
